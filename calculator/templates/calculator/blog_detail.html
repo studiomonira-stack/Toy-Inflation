@@ -1,0 +1,20 @@
+{% extends 'calculator/base.html' %}
+{% block title %}{{ post.title }} – Leksaksinflation{% endblock %}
+
+{% block content %}
+<a href="{% url 'blog_list' %}" class="back-link">← Tillbaka till bloggen</a>
+
+<article style="background: white; border-radius: 16px; padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+    
+    {% if post.image_url %}
+        <img src="{{ post.image_url }}" alt="{{ post.title }}" 
+             style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 25px;">
+    {% endif %}
+    
+    <h1 style="font-size: 1.8rem; margin-bottom: 10px;">{{ post.title }}</h1>
+    <p style="color: #636e72; margin-bottom: 25px;">{{ post.created_at|date:"j F Y" }}</p>
+    <div style="line-height: 1.8;">
+        {{ post.content|linebreaks }}
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'calculator/base.html' %}
+{% block title %}Alla leksaker – Leksaksinflation{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>🧸 Alla leksaker</h1>
+    <p>Bläddra bland alla nostalgiklassiker och se vad de skulle kosta idag!</p>
+</div>
+
+<div class="card-grid">
+    {% for toy in toys %}
+        <a href="{% url 'toy_detail' toy.slug %}" class="card">
+            <h3>{{ toy.name }}</h3>
+            <span class="year">{{ toy.original_price_year }}</span>
+            <div class="price">{{ toy.original_price }} kr</div>
+        </a>
+    {% empty %}
+        <p style="color: #636e72;">Inga leksaker inlagda än – kom tillbaka snart!</p>
+    {% endfor %}
+</div>
+{% endblock %}

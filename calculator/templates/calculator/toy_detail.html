@@ -1,0 +1,41 @@
+{% extends 'calculator/base.html' %}
+{% block title %}{{ toy.name }} – Vad kostar den idag?{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link">← Tillbaka</a>
+
+<div class="toy-detail-box">
+    <h1>{{ toy.name }}</h1>
+    <p style="color: #636e72; margin: 5px 0 20px;">Släppt {{ toy.original_price_year }} • Originalpris: <strong>{{ toy.original_price }} kr</strong></p>
+
+    {% if toy.description %}
+        <p>{{ toy.description }}</p>
+    {% endif %}
+
+    <form method="get" style="margin-top: 25px;">
+        <button type="submit" name="calculate" value="1" class="btn">
+            🧮 Räkna ut dagens värde!
+        </button>
+    </form>
+
+    {% if result %}
+        <div class="result-box">
+            <span style="font-size: 1.1rem; opacity: 0.85;">Skulle kosta idag:</span>
+            <div class="big-price">{{ result }} kr</div>
+            <div class="year-badge">{{ toy.original_price }} kr år {{ toy.original_price_year }} → {{ result }} kr idag</div>
+
+            {% if fun_facts %}
+                <div class="fun-comparisons">
+                    {% for fact in fun_facts %}
+                        <span class="fun-item">{{ fact }}</span>
+                    {% endfor %}
+                </div>
+
+                <p style="text-align: center; color: #636e72; font-size: 0.8rem; margin-top: 10px;">
+    📊 Beräkningen baseras på SCB:s konsumentprisindex (KPI)
+</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

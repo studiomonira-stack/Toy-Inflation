@@ -1,0 +1,84 @@
+{% extends 'calculator/base.html' %}
+{% block title %}Leksaksinflation – Vad kostade din barndom idag?{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Vad skulle din gamla leksak kosta idag? 🕹️</h1>
+    <p>Räkna ut dagens värde på nostalgi-klassiker från 80- och 90-talet. Inflation möter barndomsminnen!</p>
+</div>
+
+<!-- Snabb-räknare -->
+<div class="toy-detail-box" style="margin-bottom: 30px;">
+    <h2 style="margin-bottom: 10px;">🧮 Snabb-räknare</h2>
+    <p style="color: #636e72; margin-bottom: 20px;">Skriv in valfritt pris och årtal – se vad det motsvarar idag!</p>
+    
+    <form method="get" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: end;">
+        <div>
+            <label style="display: block; font-weight: 600; margin-bottom: 5px;">Pris (kr)</label>
+            <input type="number" name="price" placeholder="T.ex. 1499" 
+                   value="{{ original_price }}" required
+                   style="padding: 12px 16px; border: 2px solid #e9ecef; border-radius: 12px; font-size: 1rem; width: 150px;">
+        </div>
+        <div>
+            <label style="display: block; font-weight: 600; margin-bottom: 5px;">Årtal</label>
+            <input type="number" name="year" placeholder="T.ex. 1990" 
+                   value="{{ original_year }}" required min="1900" max="2026"
+                   style="padding: 12px 16px; border: 2px solid #e9ecef; border-radius: 12px; font-size: 1rem; width: 150px;">
+        </div>
+        <button type="submit" name="calculate_custom" value="1" class="btn">
+            Räkna ut!
+        </button>
+    </form>
+
+    {% if result %}
+        <div class="result-box" style="margin-top: 25px;">
+            <span style="font-size: 1.1rem; opacity: 0.85;">Skulle kosta idag:</span>
+            <div class="big-price">{{ result }} kr</div>
+            <div class="year-badge">{{ original_price }} kr år {{ original_year }} → {{ result }} kr idag</div>
+            
+            {% if fun_facts %}
+                <div class="fun-comparisons">
+                    {% for fact in fun_facts %}
+                        <span class="fun-item">{{ fact }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <p style="text-align: center; color: #636e72; font-size: 0.8rem; margin-top: 10px;">
+    📊 Beräkningen baseras på SCB:s konsumentprisindex (KPI)
+</p>
+
+<p style="text-align: center; color: #b2bec3; font-size: 0.75rem; margin-top: 5px;">
+    ⚠️ Endast uppskattning – samlarvärde påverkas av fler faktorer. <a href="{% url 'privacy' %}" style="color: #6c5ce7;">Läs mer</a>
+</p>
+    {% endif %}
+</div>
+
+{% if popular_toys %}
+    <h2 class="section-title">⭐ Populära leksaker</h2>
+    <div class="card-grid">
+        {% for toy in popular_toys %}
+            <a href="{% url 'toy_detail' toy.slug %}" class="card">
+                <h3>{{ toy.name }}</h3>
+                <span class="year">{{ toy.original_price_year }}</span>
+                <div class="price">{{ toy.original_price }} kr</div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'toy_list' %}" style="color: #6c5ce7; text-decoration: none; font-weight: 500; margin-top: 10px; display: inline-block;">→ Visa alla leksaker</a>
+{% endif %}
+
+{% if latest_posts %}
+    <h2 class="section-title">📝 Senaste blogginläggen</h2>
+    {% for post in latest_posts %}
+        <div class="blog-card">
+            <h3><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h3>
+            <span class="date">{{ post.created_at|date:"j F Y" }}</span>
+        </div>
+    {% endfor %}
+    <a href="{% url 'blog_list' %}" style="color: #6c5ce7; text-decoration: none; font-weight: 500;">→ Alla blogginlägg</a>
+    
+{% endif %}
+{% endblock %}
