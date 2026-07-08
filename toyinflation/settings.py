@@ -23,6 +23,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.onrender.com',
+    'leksaksinflation.se',          # ← Lägg till
+    'www.leksaksinflation.se', 
 ]
 
 
