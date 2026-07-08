@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+from django.http import HttpResponse
 
 # Import for runtime when Django is available, but provide lightweight
 # fallbacks for static analysis and editor environments where Django
@@ -80,3 +81,14 @@ def toy_list(request):
     """Listar alla leksaker"""
     toys = ToyProduct.objects.all().order_by('name')
     return render(request, 'calculator/toy_list.html', {'toys': toys})
+
+
+def setup_admin(request):
+    """Engångs-URL för att skapa admin-användare"""
+    from django.contrib.auth.models import User
+    
+    if User.objects.filter(username='admin').exists():
+        return HttpResponse("Admin finns redan! ✅")
+    
+    User.objects.create_superuser('admin', 'admin@leksaksinflation.se', 'mittlösen1234!')
+    return HttpResponse("Admin skapad! 🎉 Gå till /admin/ och logga in")
