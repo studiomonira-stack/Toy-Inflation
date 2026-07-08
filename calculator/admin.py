@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin  # type: ignore[reportMissingModuleSource]
 from .models import ToyProduct, BlogPost
 
 @admin.register(ToyProduct)

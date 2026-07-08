@@ -1,4 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from typing import TYPE_CHECKING
+
+# Import for runtime when Django is available, but provide lightweight
+# fallbacks for static analysis and editor environments where Django
+# isn't installed. Using TYPE_CHECKING keeps import-time resolution
+# for linters/type-checkers while avoiding runtime import errors.
+if TYPE_CHECKING:
+    from django.shortcuts import render, get_object_or_404  # type: ignore
+else:
+    try:
+        from django.shortcuts import render, get_object_or_404
+    except Exception:
+        # Fallback stubs when Django isn't available (e.g., for linters or editors).
+        def render(request, template, context=None):
+            raise RuntimeError("Django not found. Install Django to use this project.")
+
+        def get_object_or_404(model, *args, **kwargs):
+            raise RuntimeError("Django not found. Install Django to use this project.")
 from .models import ToyProduct, BlogPost
 from .utils import calculate_inflation_price, calculate_custom_inflation, get_fun_comparisons
 
