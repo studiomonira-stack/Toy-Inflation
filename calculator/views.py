@@ -83,13 +83,3 @@ def toy_list(request):
     return render(request, 'calculator/toy_list.html', {'toys': toys})
 
 
-def reset_admin(request):
-    """Återställ admin-lösenordet"""
-    from django.contrib.auth.models import User
-    try:
-        user = User.objects.get(username='admin')
-        user.set_password('mittlösen1234!')
-        user.save()
-        return HttpResponse("Lösenord återställt! 🔑 Gå till /admin/ och logga in med: admin / mittlösen1234!")
-    except User.DoesNotExist:
-        return HttpResponse("Admin finns inte! Gå till /setup/ först")
