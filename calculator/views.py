@@ -83,3 +83,5 @@ def toy_list(request):
     return render(request, 'calculator/toy_list.html', {'toys': toys})
 
 
+def contact(request):
+    return render(request, 'calculator/contact.html')
