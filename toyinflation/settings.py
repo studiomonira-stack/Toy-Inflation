@@ -119,7 +119,7 @@ ALLOWED_HOSTS = [
     '.onrender.com',  # Tillåt alla Render-domäner
 ]
 
-# Om du har en egen domän senare, lägg till denna här:
+# Om du har en egen domän senare, lägg till den här:
 # ALLOWED_HOSTS.append('leksaksinflation.se')
 
 
