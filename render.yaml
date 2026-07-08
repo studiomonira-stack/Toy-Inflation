@@ -12,4 +12,6 @@ services:
       - key: DEBUG
         value: "false"
       - key: DJANGO_SUPERUSER_PASSWORD
-        value: "Salih2013?"
+        value: "mittlösen1234!"
+      - key: DATABASE_URL
+        value: "postgresql://brollopsplanner_db_user:wNhdgAtPjChqFC0SzFtJbr9S9itiW1cc@dpg-d8snfmjeo5us73enrllg-a/brollopsplanner_db"  # ← Klistra in din PostgreSQL URL här!
