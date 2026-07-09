@@ -1,0 +1,10 @@
+{% extends 'calculator/base.html' %}
+{% block title %}Sidan hittades inte – Leksaksinflation{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>😢 404 – Sidan hittades inte</h1>
+    <p>Den här leksaken verkar ha försvunnit i nostalgins töcken...</p>
+    <a href="{% url 'home' %}" class="btn" style="margin-top: 20px;">🏠 Till startsidan</a>
+</div>
+{% endblock %}

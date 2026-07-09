@@ -5,6 +5,11 @@
 {% block og_description %}Visste du att {{ toy.name }} kostade {{ toy.original_price }} kr {{ toy.original_price_year }}? Se vad det motsvarar idag!{% endblock %}
 
 {% block content %}
+<nav style="margin-bottom: 15px; font-size: 0.85rem; color: #636e72;">
+    <a href="{% url 'home' %}" style="color: #6c5ce7;">Hem</a> › 
+    <a href="{% url 'toy_list' %}" style="color: #6c5ce7;">Alla leksaker</a> › 
+    {{ toy.name }}
+</nav>
 <a href="{% url 'home' %}" class="back-link">← Tillbaka</a>
 
 <div class="toy-detail-box">
@@ -41,4 +46,26 @@
         </div>
     {% endif %}
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Vad kostade {{ toy.name }} {{ toy.original_price_year }}?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "{{ toy.name }} kostade {{ toy.original_price }} kr år {{ toy.original_price_year }}."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Vad skulle {{ toy.name }} kosta idag?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Baserat på SCB:s konsumentprisindex skulle {{ toy.name }} kosta cirka {{ result|default:'[räkna ut]' }} kr idag."
+    }
+  }]
+}
+</script>
 {% endblock %}
