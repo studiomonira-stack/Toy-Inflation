@@ -7,7 +7,7 @@ class ToyProductSitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return ToyProduct.objects.all()
+        return ToyProduct.objects.all().order_by('name')  # ← Lägg till .order_by()
 
     def location(self, obj):
         return reverse('toy_detail', args=[obj.slug])
@@ -18,7 +18,7 @@ class BlogPostSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return BlogPost.objects.filter(published=True)
+        return BlogPost.objects.filter(published=True).order_by('-created_at')  # ← Lägg till .order_by()
 
     def location(self, obj):
         return reverse('blog_detail', args=[obj.slug])
