@@ -1,13 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from django.contrib.sitemaps.views import sitemap
 from calculator import views
-from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap
-
-sitemaps = {
-    'toys': ToyProductSitemap,
-    'blog': BlogPostSitemap,
-}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,6 +11,5 @@ urlpatterns = [
     path('blogg/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('ansvar/', views.privacy, name='privacy'),
     path('kontakt/', views.contact, name='contact'),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
 ]
