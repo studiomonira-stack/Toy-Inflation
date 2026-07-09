@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Leksaksinflation{% endblock %}</title>
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}Leksaksinflation – Vad kostade din barndom?{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Räkna ut vad dina gamla leksaker skulle kosta idag. Game Boy, Pokemon, Tamagotchi och 20+ nostalgiklassiker – se dagens värde med SCB:s inflationsdata.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}leksaker, inflation, nostalgi, 90-tal, Game Boy, Pokemon, Tamagotchi, PlayStation, LEGO, kalkylator{% endblock %}">
+    <meta name="author" content="Leksaksinflation.se">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (Facebook/TikTok delning) -->
+    <meta property="og:title" content="{% block og_title %}Leksaksinflation – Vad kostade din barndom idag?{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Se vad dina gamla leksaker skulle kosta idag! Över 20 nostalgiklassiker med riktig inflationsdata från SCB.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 

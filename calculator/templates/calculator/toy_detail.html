@@ -1,4 +1,9 @@
 {% extends 'calculator/base.html' %}
+{% block title %}{{ toy.name }} – Vad kostade den {{ toy.original_price_year }}? Dagens värde{% endblock %}
+{% block meta_description %}Se vad {{ toy.name }} skulle kosta idag! Originalpriset var {{ toy.original_price }} kr år {{ toy.original_price_year }}. Räkna ut dagens värde med SCB:s inflationsdata.{% endblock %}
+{% block og_title %}{{ toy.name }} – från {{ toy.original_price }} kr ({{ toy.original_price_year }}) till dagens värde{% endblock %}
+{% block og_description %}Visste du att {{ toy.name }} kostade {{ toy.original_price }} kr {{ toy.original_price_year }}? Se vad det motsvarar idag!{% endblock %}
+{% extends 'calculator/base.html' %}
 {% block title %}{{ toy.name }} – Vad kostar den idag?{% endblock %}
 
 {% block content %}

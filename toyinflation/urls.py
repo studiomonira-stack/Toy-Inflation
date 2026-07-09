@@ -10,6 +10,14 @@ except Exception:
     def path(route, view, kwargs=None, name=None):
         raise ImportError("django.urls.path is not available")
 from calculator import views
+from django.contrib.sitemaps.views import sitemap
+from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap, StaticViewSitemap
+
+sitemaps = {
+    'toys': ToyProductSitemap,
+    'blog': BlogPostSitemap,
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     # include admin site only if django.contrib.admin is available
@@ -21,4 +29,6 @@ urlpatterns = [
     path('blogg/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('ansvar/', views.privacy, name='privacy'),
     path('kontakt/', views.contact, name='contact'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
 ]

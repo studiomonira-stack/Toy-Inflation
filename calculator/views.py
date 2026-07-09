@@ -19,7 +19,19 @@ else:
             raise RuntimeError("Django not found. Install Django to use this project.")
 from .models import ToyProduct, BlogPost
 from .utils import calculate_inflation_price, calculate_custom_inflation, get_fun_comparisons
+from django.http import HttpResponse
+from django.shortcuts import render
 
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /setup/
+Disallow: /reset/
+
+Sitemap: https://leksaksinflation.se/sitemap.xml
+"""
+    return HttpResponse(content, content_type="text/plain")
 
 def home(request):
     popular_toys = ToyProduct.objects.filter(popular=True)[:6]
