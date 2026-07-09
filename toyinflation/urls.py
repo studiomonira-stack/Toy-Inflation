@@ -1,27 +1,9 @@
-try:
-    from django.contrib import admin # pyright: ignore[reportMissingModuleSource]
-except Exception:
-    admin = None
-try:
-    from django.urls import path # type: ignore
-except Exception:
-    # Provide a clear error if django.urls is unavailable (e.g., in static analysis
-    # environments). This mirrors the try/except used for django.contrib.admin above.
-    def path(route, view, kwargs=None, name=None):
-        raise ImportError("django.urls.path is not available")
+from django.contrib import admin
+from django.urls import path
 from calculator import views
-from django.contrib.sitemaps.views import sitemap
-from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap, StaticViewSitemap
-
-sitemaps = {
-    'toys': ToyProductSitemap,
-    'blog': BlogPostSitemap,
-    'static': StaticViewSitemap,
-}
 
 urlpatterns = [
-    # include admin site only if django.contrib.admin is available
-    *( [path('admin/', admin.site.urls)] if admin is not None else [] ),
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('leksaker/', views.toy_list, name='toy_list'),
     path('leksak/<slug:slug>/', views.toy_detail, name='toy_detail'),
@@ -29,6 +11,5 @@ urlpatterns = [
     path('blogg/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('ansvar/', views.privacy, name='privacy'),
     path('kontakt/', views.contact, name='contact'),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
 ]
