@@ -1,26 +1,8 @@
-from typing import TYPE_CHECKING
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-
-# Import for runtime when Django is available, but provide lightweight
-# fallbacks for static analysis and editor environments where Django
-# isn't installed. Using TYPE_CHECKING keeps import-time resolution
-# for linters/type-checkers while avoiding runtime import errors.
-if TYPE_CHECKING:
-    from django.shortcuts import render, get_object_or_404  # type: ignore
-else:
-    try:
-        from django.shortcuts import render, get_object_or_404
-    except Exception:
-        # Fallback stubs when Django isn't available (e.g., for linters or editors).
-        def render(request, template, context=None):
-            raise RuntimeError("Django not found. Install Django to use this project.")
-
-        def get_object_or_404(model, *args, **kwargs):
-            raise RuntimeError("Django not found. Install Django to use this project.")
 from .models import ToyProduct, BlogPost
 from .utils import calculate_inflation_price, calculate_custom_inflation, get_fun_comparisons
-from django.http import HttpResponse
-from django.shortcuts import render
+
 
 def robots_txt(request):
     content = """User-agent: *
@@ -32,6 +14,7 @@ Disallow: /reset/
 Sitemap: https://leksaksinflation.se/sitemap.xml
 """
     return HttpResponse(content, content_type="text/plain")
+
 
 def home(request):
     popular_toys = ToyProduct.objects.filter(popular=True)[:6]
@@ -86,8 +69,10 @@ def blog_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug, published=True)
     return render(request, 'calculator/blog_detail.html', {'post': post})
 
+
 def privacy(request):
     return render(request, 'calculator/privacy.html')
+
 
 def toy_list(request):
     """Listar alla leksaker"""
