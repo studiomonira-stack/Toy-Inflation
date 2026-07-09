@@ -7,7 +7,6 @@ from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap, StaticViewS
 sitemaps = {
     'toys': ToyProductSitemap,
     'blog': BlogPostSitemap,
-    'static': StaticViewSitemap,
 }
 
 urlpatterns = [
