@@ -82,3 +82,6 @@ def toy_list(request):
 
 def contact(request):
     return render(request, 'calculator/contact.html')
+
+def sitemap_view(request):
+    return render(request, 'calculator/sitemap.xml', content_type='application/xml')

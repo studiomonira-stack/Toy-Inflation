@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- Startsidan -->
+    <url>
+        <loc>https://leksaksinflation.se/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Alla leksaker -->
+    <url>
+        <loc>https://leksaksinflation.se/leksaker/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Bloggen -->
+    <url>
+        <loc>https://leksaksinflation.se/blogg/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Ansvar -->
+    <url>
+        <loc>https://leksaksinflation.se/ansvar/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Kontakt -->
+    <url>
+        <loc>https://leksaksinflation.se/kontakt/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+</urlset>
