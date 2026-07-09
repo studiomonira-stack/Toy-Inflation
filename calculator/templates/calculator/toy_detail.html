@@ -14,6 +14,15 @@
 
 <div class="toy-detail-box">
     <h1>{{ toy.name }}</h1>
+    <div class="toy-detail-box">
+    <h1>{{ toy.name }}</h1>
+    
+    {% if toy.image_url %}
+        <img src="{{ toy.image_url }}" alt="{{ toy.name }} – leksak från {{ toy.original_price_year }}" 
+             style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;">
+    {% endif %}
+    
+    <p style="color: #636e72; margin: 5px 0 20px;">Släppt {{ toy.original_price_year }} • Originalpris: <strong>{{ toy.original_price }} kr</strong></p>
     <p style="color: #636e72; margin: 5px 0 20px;">Släppt {{ toy.original_price_year }} • Originalpris: <strong>{{ toy.original_price }} kr</strong></p>
 
     {% if toy.description %}

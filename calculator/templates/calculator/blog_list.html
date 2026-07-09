@@ -10,7 +10,7 @@
 {% for post in posts %}
     <div class="blog-card" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
         {% if post.image_url %}
-            <img src="{{ post.image_url }}" alt="{{ post.title }}" 
+            <img src="{{ post.image_url }}" alt="{{ post.title }} – blogginlägg om nostalgi" 
                  style="width: 150px; height: 150px; object-fit: cover; border-radius: 12px; flex-shrink: 0;">
         {% endif %}
         <div style="flex: 1; min-width: 200px;">
