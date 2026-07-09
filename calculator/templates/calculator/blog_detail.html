@@ -3,8 +3,6 @@
 {% block meta_description %}{{ post.content|striptags|truncatewords:30 }}{% endblock %}
 {% block og_title %}{{ post.title }}{% endblock %}
 {% block og_description %}{{ post.content|striptags|truncatewords:30 }}{% endblock %}
-{% extends 'calculator/base.html' %}
-{% block title %}{{ post.title }} – Leksaksinflation{% endblock %}
 
 {% block content %}
 <a href="{% url 'blog_list' %}" class="back-link">← Tillbaka till bloggen</a>
