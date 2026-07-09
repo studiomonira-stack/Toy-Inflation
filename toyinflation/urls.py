@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 from calculator import views
-from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap, StaticViewSitemap
+from toyinflation.sitemap import ToyProductSitemap, BlogPostSitemap
 
 sitemaps = {
     'toys': ToyProductSitemap,
