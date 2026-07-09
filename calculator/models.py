@@ -1,32 +1,6 @@
-try:
-    from django.db import models  # type: ignore
-    from django.utils.text import slugify  # type: ignore
-except Exception:  # pragma: no cover - fallback for editors/linters when Django isn't installed
-    # Minimal fallback stubs so linters/IDEs don't error when Django isn't available
-    from types import SimpleNamespace
+from django.db import models
+from django.utils.text import slugify
 
-    def _field(*args, **kwargs):
-        return None
-
-    class _ModelBase:
-        def __init__(self, *args, **kwargs):
-            pass
-
-    models = SimpleNamespace(
-        Model=_ModelBase,
-        CharField=_field,
-        SlugField=_field,
-        DecimalField=_field,
-        IntegerField=_field,
-        TextField=_field,
-        URLField=_field,
-        BooleanField=_field,
-        DateTimeField=_field,
-    )
-
-    def slugify(value):
-        # simple fallback slugify for editor usage
-        return "-".join(str(value).lower().split())
 
 class ToyProduct(models.Model):
     """Alla nostalgiprylar som går att räkna på"""
@@ -35,9 +9,9 @@ class ToyProduct(models.Model):
     original_price = models.DecimalField(max_digits=10, decimal_places=2)
     original_price_year = models.IntegerField()
     description = models.TextField(blank=True)
-    category = models.CharField(max_length=100, blank=True)  # t.ex. "Spelkonsol", "Docka"
-    image_url = models.URLField(blank=True)  # för senare
-    popular = models.BooleanField(default=False)  # visa på startsidan
+    category = models.CharField(max_length=100, blank=True)
+    image_url = models.URLField(blank=True)
+    popular = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
