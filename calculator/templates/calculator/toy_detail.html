@@ -77,4 +77,47 @@
   }]
 }
 </script>
+<!-- Structured Data: Product + Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ toy.name }}",
+  "description": "{{ toy.description|default:'En nostalgisk leksak från förr.'|striptags|truncatewords:50 }}",
+  "category": "{{ toy.category|default:'Leksak' }}",
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ toy.original_price }}",
+    "priceCurrency": "SEK",
+    "availability": "https://schema.org/InStoreOnly",
+    "validFrom": "{{ toy.original_price_year }}-01-01"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ toy.category|default:'Leksakstillverkare' }}"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Hem",
+    "item": "https://leksaksinflation.se/"
+  }, {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Alla leksaker",
+    "item": "https://leksaksinflation.se/leksaker/"
+  }, {
+    "@type": "ListItem",
+    "position": 3,
+    "name": "{{ toy.name }}"
+  }]
+}
+</script>
 {% endblock %}
