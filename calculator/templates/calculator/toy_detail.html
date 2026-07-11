@@ -14,8 +14,6 @@
 
 <div class="toy-detail-box">
     <h1>{{ toy.name }}</h1>
-    <div class="toy-detail-box">
-    <h1>{{ toy.name }}</h1>
     
     {% if toy.image_url %}
         <img src="{{ toy.image_url }}" alt="{{ toy.name }} – leksak från {{ toy.original_price_year }}" 
@@ -120,4 +118,28 @@
   }]
 }
 </script>
+
+{% if result %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Vad kostade {{ toy.name }} {{ toy.original_price_year }}?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "{{ toy.name }} kostade {{ toy.original_price }} kronor år {{ toy.original_price_year }}."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Vad skulle {{ toy.name }} kosta idag?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Baserat på SCB:s konsumentprisindex skulle {{ toy.name }} kosta cirka {{ result }} kronor i dagens penningvärde."
+    }
+  }]
+}
+</script>
+{% endif %}
 {% endblock %}
